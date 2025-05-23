@@ -1,0 +1,5 @@
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.AssemblyInfoInputs.cache
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.AssemblyInfo.cs
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.csproj.CoreCompileInputs.cache
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.sourcelink.json
