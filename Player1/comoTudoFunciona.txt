@@ -1,0 +1,98 @@
+Método StartServer(int port)
+C#
+
+public void StartServer(int port)
+{
+    // 1. var listener = new TcpListener(IPAddress.Any, port);
+    // 2. listener.Start();
+    // 3. Console.WriteLine($"Aguardando Player2 na porta {port}...");
+    // 4. var client = listener.AcceptTcpClient();
+    // 5. stream = client.GetStream();
+    // 6. Console.WriteLine("Player2 conectado!");
+}
+Explicação Detalhada:
+
+var listener = new TcpListener(IPAddress.Any, port);
+
+TcpListener: Esta é uma classe do .NET (namespace System.Net.Sockets) que "escuta" por tentativas de conexão TCP de clientes.
+IPAddress.Any: Indica que o servidor aceitará conexões em qualquer interface de rede disponível na máquina onde o código está rodando. Se a máquina tiver múltiplos endereços IP (por exemplo, um para Wi-Fi e outro para Ethernet), o servidor escutará em todos eles.
+port: É o número da porta na qual o servidor estará escutando. Clientes (Player 2, neste caso) precisarão saber o endereço IP do servidor e este número de porta para se conectar. Por exemplo, se port for 12345, o Player 2 se conectará ao IP do Player 1 na porta 12345.
+listener.Start();
+
+Este método inicia efetivamente o processo de escuta por conexões de entrada na porta e endereço IP especificados na criação do TcpListener.
+Após esta linha, o servidor está pronto para aceitar uma conexão do Player 2.
+Console.WriteLine($"Aguardando Player2 na porta {port}...");
+
+Esta linha simplesmente imprime uma mensagem no console do Player 1, informando que o servidor foi iniciado e está aguardando a conexão do Player 2 na porta especificada. É um feedback visual para o usuário.
+var client = listener.AcceptTcpClient();
+
+Este é um ponto crucial e bloqueante.
+AcceptTcpClient(): O método espera (bloqueia a execução do código nesta linha) até que um cliente (Player 2) tente se conectar ao servidor.
+Quando o Player 2 se conecta com sucesso, AcceptTcpClient() retorna um objeto do tipo TcpClient.
+var client: Este objeto TcpClient representa a conexão TCP estabelecida com o Player 2. Todas as comunicações futuras (envio e recebimento de dados) com esse Player 2 específico serão feitas através deste objeto client.
+stream = client.GetStream();
+
+client.GetStream(): Este método do objeto TcpClient retorna um NetworkStream.
+NetworkStream: É o canal de comunicação bidirecional através do qual os dados (bytes) são enviados e recebidos entre o servidor (Player 1) e o cliente conectado (Player 2).
+stream: Você está armazenando essa NetworkStream em uma variável (presumivelmente uma variável de membro da classe, já que não é declarada com var aqui, indicando que stream já foi declarada em algum outro lugar no escopo da classe). É através desta stream que os métodos Send e Receive irão operar.
+Console.WriteLine("Player2 conectado!");
+
+Outra mensagem no console, informando ao Player 1 que o Player 2 se conectou com sucesso.
+Método Send(string msg)
+C#
+
+public void Send(string msg)
+{
+    // 1. var data = Encoding.ASCII.GetBytes(msg);
+    // 2. stream.Write(data, 0, data.Length);
+}
+Explicação Detalhada:
+
+var data = Encoding.ASCII.GetBytes(msg);
+
+msg: É a mensagem (uma string) que você deseja enviar para o Player 2.
+Encoding.ASCII.GetBytes(msg): A comunicação de rede TCP envia dados como uma sequência de bytes, não como strings diretamente. Esta linha converte a string msg em um array de bytes (byte[]) usando a codificação ASCII.
+Nota sobre codificação: ASCII é uma codificação simples que cobre caracteres básicos do inglês. Se o seu jogo precisar de caracteres acentuados ou especiais de outros idiomas, você pode considerar usar Encoding.UTF8.GetBytes(msg) para uma maior compatibilidade de caracteres. No entanto, ambos os lados (Player 1 e Player 2) devem usar a mesma codificação para ler e escrever as mensagens corretamente.
+var data: Armazena o array de bytes resultante.
+stream.Write(data, 0, data.Length);
+
+stream.Write(): Este método da NetworkStream envia os dados pela conexão TCP para o Player 2.
+data: O array de bytes que você quer enviar (obtido no passo anterior).
+0: O índice inicial no array data a partir do qual os bytes serão enviados. 0 significa começar do início do array.
+data.Length: O número total de bytes a serem enviados do array data.
+Método Receive()
+C#
+
+public string Receive()
+{
+    // 1. var buf = new byte[32];
+    // 2. int len = stream.Read(buf, 0, buf.Length);
+    // 3. return Encoding.ASCII.GetString(buf, 0, len);
+}
+Explicação Detalhada:
+
+var buf = new byte[32];
+
+Cria um "buffer" (um array de bytes) chamado buf com um tamanho fixo de 32 bytes.
+Este buffer será usado para armazenar temporariamente os dados recebidos do Player 2 através da NetworkStream.
+Importante: O tamanho do buffer (32 bytes aqui) é crucial. Se o Player 2 enviar uma mensagem maior que 32 bytes de uma vez, este método Receive lerá apenas os primeiros 32 bytes. Você precisaria de uma lógica mais complexa (como um loop de leitura ou um protocolo para indicar o tamanho da mensagem) para lidar com mensagens de tamanho variável ou maiores que o buffer. Para o seu jogo, se as mensagens (como coordenadas "A5") forem sempre curtas, 32 bytes podem ser suficientes.
+int len = stream.Read(buf, 0, buf.Length);
+
+stream.Read(): Este método da NetworkStream tenta ler dados da conexão TCP que foram enviados pelo Player 2 e armazená-los no buffer buf.
+Este método também é bloqueante por padrão. Ele esperará até que haja dados para ler na stream ou que a conexão seja fechada.
+buf: O array de bytes onde os dados lidos serão armazenados.
+0: O índice inicial no array buf onde os dados lidos começarão a ser armazenados.
+buf.Length: O número máximo de bytes a serem lidos da stream e armazenados no buffer (neste caso, 32).
+int len: O método Read retorna o número de bytes que foram efetivamente lidos da stream e colocados no buffer. Este valor pode ser menor que o tamanho do buffer se menos de 32 bytes estiverem disponíveis, ou pode ser 0 se a conexão for fechada pelo outro lado.
+return Encoding.ASCII.GetString(buf, 0, len);
+
+Converte os bytes recebidos e armazenados no buffer buf de volta para uma string.
+Encoding.ASCII.GetString(): Usa a codificação ASCII para realizar a conversão (deve corresponder à codificação usada pelo Player 2 ao enviar).
+buf: O buffer contendo os dados.
+0: O índice inicial no buffer a partir do qual a conversão para string começará.
+len: Crucial aqui! Usa o valor len retornado por stream.Read() para converter apenas a porção do buffer que contém dados válidos. Se você usasse buf.Length em vez de len, poderia acabar com caracteres indesejados na string se menos de 32 bytes fossem recebidos.
+Em resumo:
+
+StartServer prepara o Player 1 para aceitar uma conexão TCP do Player 2.
+Send converte uma string em bytes e a envia pela conexão estabelecida.
+Receive lê bytes da conexão, os armazena em um buffer e os converte de volta para uma string.

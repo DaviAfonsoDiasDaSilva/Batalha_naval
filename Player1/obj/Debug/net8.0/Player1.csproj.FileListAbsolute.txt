@@ -3,3 +3,13 @@ D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.Asse
 D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.AssemblyInfo.cs
 D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.csproj.CoreCompileInputs.cache
 D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.sourcelink.json
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\bin\Debug\net8.0\Player1.exe
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\bin\Debug\net8.0\Player1.deps.json
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\bin\Debug\net8.0\Player1.runtimeconfig.json
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\bin\Debug\net8.0\Player1.dll
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\bin\Debug\net8.0\Player1.pdb
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.dll
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\refint\Player1.dll
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.pdb
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\Player1.genruntimeconfig.cache
+D:\Estudos\Programacao\TAPOO\Batalha_naval\Player1\obj\Debug\net8.0\ref\Player1.dll
