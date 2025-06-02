@@ -32,29 +32,6 @@ public class Program
                 Console.WriteLine();
             }
         }
-
-        public void PlaceShipsRandomly(int n)
-        {
-            var rnd = new Random();
-            int placed = 0;
-            while (placed < n)
-            {
-                int r = rnd.Next(10), c = rnd.Next(10);
-                if (grid[r, c] == '~')
-                {
-                    grid[r, c] = '*';
-                    placed++;
-                }
-            }
-        }
-
-        public void PlaceShipsManually(int n)
-        {
-            // Implementar lógica para posicionar navios manualmente
-            // (Requer interação com o usuário para coordenadas e orientação)
-            Console.WriteLine("Posicionamento manual de navios não implementado neste exemplo.");
-        }
-
         public bool IsShip(int r, int c)
         {
             return grid[r, c] == '*';

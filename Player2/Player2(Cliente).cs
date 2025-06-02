@@ -28,7 +28,7 @@ public class Player2Client
     {
         if (stream == null)
         {
-            Console.WriteLine("Erro: Não conectado ao servidor.");
+            Console.WriteLine("[DEBUG] Erro: Não conectado ao servidor."); // Mensagem de debug
             return;
         }
 
@@ -36,11 +36,11 @@ public class Player2Client
         {
             byte[] data = Encoding.ASCII.GetBytes(message);
             stream.Write(data, 0, data.Length);
-            Console.WriteLine($"Enviado para o servidor: {message}");
+            Console.WriteLine($"[DEBUG] Mensagem enviada ao servidor: {message}"); // Mensagem de debug
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao enviar: {ex.Message}");
+            Console.WriteLine($"[DEBUG] Erro ao enviar mensagem: {ex.Message}"); // Mensagem de debug
             throw;
         }
     }
@@ -114,116 +114,112 @@ public class Player2Client
         }
     }
 
+    public void StartGame()
+    {
+        Console.WriteLine("Bem-vindo ao jogo de Batalha Naval!");
+
+        while (true)
+        {
+            Console.WriteLine("\nTabuleiro atual:");
+            // Supondo que o tabuleiro seja exibido aqui
+            // Exemplo: board.Print(false);
+
+            // Chama a função para obter a coordenada de ataque
+            string attackCoordinate = GetAttackCoordinate();
+
+            if (attackCoordinate == "ENCERRAR_CONEXAO")
+            {
+                Console.WriteLine("Encerrando o jogo...");
+                CloseConnection();
+                break;
+            }
+
+            // Envia a coordenada ao servidor
+            Send(attackCoordinate);
+
+            // Aguarda a resposta do servidor
+            string response = Receive();
+            Console.WriteLine($"Resposta do servidor: {response}");
+
+            // Verifica se o jogo terminou
+            if (response == "WIN")
+            {
+                Console.WriteLine("Parabéns! Você venceu o jogo!");
+                break;
+            }
+            else if (response == "LOSE")
+            {
+                Console.WriteLine("Você perdeu o jogo. Tente novamente!");
+                break;
+            }
+        }
+    }
+
     public class Board
-{
-    private char[,] grid = new char[10, 10];
-
-    public Board()
     {
-        for (int r = 0; r < 10; r++)
-            for (int c = 0; c < 10; c++)
-                grid[r, c] = '~';
-    }
+        private char[,] grid = new char[10, 10];
 
-    public void Print(bool showShips)
-    {
-        Console.Write("   ");
-        for (int c = 0; c < 10; c++) Console.Write($"{c} ");
-        Console.WriteLine();
-        for (int r = 0; r < 10; r++)
+        public Board()
         {
-            Console.Write($"{(char)('A' + r)}  ");
-            for (int c = 0; c < 10; c++)
-            {
-                char cell = grid[r, c];
-                Console.Write(!showShips && cell == '*' ? "~ " : $"{cell} ");
-            }
+            for (int r = 0; r < 10; r++)
+                for (int c = 0; c < 10; c++)
+                    grid[r, c] = '~';
+        }
+
+        public void Print(bool showShips)
+        {
+            Console.Write("   ");
+            for (int c = 0; c < 10; c++) Console.Write($"{c} ");
             Console.WriteLine();
-        }
-    }
-
-    public void PlaceShipsRandomly(int n)
-    {
-        var rnd = new Random();
-        int placed = 0;
-        while (placed < n)
-        {
-            int r = rnd.Next(10), c = rnd.Next(10);
-            if (grid[r, c] == '~')
+            for (int r = 0; r < 10; r++)
             {
-                grid[r, c] = '*';
-                placed++;
+                Console.Write($"{(char)('A' + r)}  ");
+                for (int c = 0; c < 10; c++)
+                {
+                    char cell = grid[r, c];
+                    Console.Write(!showShips && cell == '*' ? "~ " : $"{cell} ");
+                }
+                Console.WriteLine();
             }
         }
-    }
 
-    public void PlaceShipsManually(int n)
-    {
-        for (int i = 0; i < n; i++)
+        public bool IsShip(int r, int c)
         {
-            bool placed = false;
-            while (!placed)
-            {
-                Console.Write($"Digite a coordenada para o navio {i + 1} (ex: A5): ");
-                string coord = Console.ReadLine().ToUpper();
-                try
-                {
-                    var (row, col) = ParseCoordinate(coord);
-                    if (grid[row, col] == '~')
-                    {
-                        grid[row, col] = '*';
-                        placed = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Já existe um navio nessa coordenada. Tente novamente.");
-                    }
-                }
-                catch (FormatException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
+            return grid[r, c] == '*';
+        }
+
+        public void MarkHit(int r, int c)
+        {
+            grid[r, c] = 'X';
+        }
+
+        public void MarkMiss(int r, int c)
+        {
+            grid[r, c] = 'O';
+        }
+
+        public bool AreAllShipsSunk()
+        {
+            for (int r = 0; r < 10; r++)
+                for (int c = 0; c < 10; c++)
+                    if (grid[r, c] == '*')
+                        return false;
+            return true;
+        }
+
+        public static (int row, int col) ParseCoordinate(string coord)
+        {
+            if (string.IsNullOrEmpty(coord) || coord.Length < 2 || coord.Length > 3)
+                throw new FormatException("Coordenada inválida: Formato incorreto.");
+
+            int row = coord[0] - 'A';
+            if (row < 0 || row > 9)
+                throw new FormatException("Coordenada inválida: Linha fora do intervalo (A-J).");
+
+            if (!int.TryParse(coord.Substring(1), out int col) || col < 0 || col > 9)
+                throw new FormatException("Coordenada inválida: Coluna fora do intervalo (0-9).");
+
+            return (row, col);
         }
     }
-
-    public bool IsShip(int r, int c)
-    {
-        return grid[r, c] == '*';
-    }
-
-    public void MarkHit(int r, int c)
-    {
-        grid[r, c] = 'X';
-    }
-
-    public void MarkMiss(int r, int c)
-    {
-        grid[r, c] = 'O';
-    }
-
-    public bool AreAllShipsSunk()
-    {
-        for (int r = 0; r < 10; r++)
-            for (int c = 0; c < 10; c++)
-                if (grid[r, c] == '*')
-                    return false;
-        return true;
-    }
-
-    public static (int row, int col) ParseCoordinate(string coord)
-    {
-        if (string.IsNullOrEmpty(coord) || coord.Length < 2 || coord.Length > 3)
-            throw new FormatException("Coordenada inválida: Formato incorreto.");
-
-        int row = coord[0] - 'A';
-        if (row < 0 || row > 9)
-            throw new FormatException("Coordenada inválida: Linha fora do intervalo (A-J).");
-
-        if (!int.TryParse(coord.Substring(1), out int col) || col < 0 || col > 9)
-            throw new FormatException("Coordenada inválida: Coluna fora do intervalo (0-9).");
-
-        return (row, col);
-    }
-}
 }

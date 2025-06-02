@@ -24,6 +24,8 @@ public class Player1Server
         client = listener.AcceptTcpClient();
         stream = client.GetStream();
         Console.WriteLine("Player2 conectado!");
+        Console.WriteLine("[DEBUG] Enviando mensagem inicial para o Player2.");
+        Send("Bem-vindo ao jogo de Batalha Naval!");
     }
 
     public void SetupGame()
@@ -60,13 +62,27 @@ public class Player1Server
 
     public string Receive()
     {
-        byte[] buf = new byte[32];
-        int len = stream.Read(buf, 0, buf.Length);
-        return Encoding.ASCII.GetString(buf, 0, len);
+        try
+        {
+            byte[] buffer = new byte[1024];
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
+            if (bytesRead == 0)
+            {
+                Console.WriteLine("Servidor desconectou.");
+                return null;
+            }
+            return Encoding.ASCII.GetString(buffer, 0, bytesRead);
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine("Timeout ao aguardar mensagem do servidor.");
+            return null;
+        }
     }
 
     public void HandleAttack(string coord)
     {
+        Console.WriteLine($"[DEBUG] Processando ataque na coordenada: {coord}"); // Mensagem de debug
         try
         {
             var (row, col) = Board.ParseCoordinate(coord);
@@ -74,10 +90,11 @@ public class Player1Server
             {
                 gameBoard.MarkHit(row, col);
                 shipsSunk++;
-                Console.WriteLine("Navio derrubado!"); // Adicionado para exibir mensagem no terminal
+                Console.WriteLine("[DEBUG] Navio atingido!"); // Mensagem de debug
 
                 if (shipsSunk == 10)
                 {
+                    Console.WriteLine("[DEBUG] Todos os navios foram afundados!"); // Mensagem de debug
                     Send("WIN");
                 }
                 else
@@ -87,12 +104,14 @@ public class Player1Server
             }
             else
             {
+                Console.WriteLine("[DEBUG] Ataque errou o alvo."); // Mensagem de debug
                 gameBoard.MarkMiss(row, col);
                 Send("MISS");
             }
         }
-        catch (FormatException)
+        catch (FormatException ex)
         {
+            Console.WriteLine($"[DEBUG] Coordenada inválida recebida: {coord}. Erro: {ex.Message}"); // Mensagem de debug
             Send("INVALID");
         }
 
