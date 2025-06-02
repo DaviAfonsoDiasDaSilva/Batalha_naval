@@ -1,15 +1,30 @@
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.GeneratedMSBuildEditorConfig.editorconfig
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.AssemblyInfoInputs.cache
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.AssemblyInfo.cs
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.csproj.CoreCompileInputs.cache
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.sourcelink.json
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\bin\Debug\net8.0\Player2.exe
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\bin\Debug\net8.0\Player2.deps.json
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\bin\Debug\net8.0\Player2.runtimeconfig.json
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\bin\Debug\net8.0\Player2.dll
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\bin\Debug\net8.0\Player2.pdb
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.dll
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\refint\Player2.dll
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.pdb
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\Player2.genruntimeconfig.cache
-D:\Estudos\Programacao\TAPOO\Batalha_naval\Player2\obj\Debug\net8.0\ref\Player2.dll
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.GeneratedMSBuildEditorConfig.editorconfig
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.AssemblyInfoInputs.cache
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.AssemblyInfo.cs
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.csproj.CoreCompileInputs.cache
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.sourcelink.json
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/bin/Debug/net8.0/Player2.exe
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/bin/Debug/net8.0/Player2.deps.json
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/bin/Debug/net8.0/Player2.runtimeconfig.json
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/bin/Debug/net8.0/Player2.dll
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/bin/Debug/net8.0/Player2.pdb
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.dll
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/refint/Player2.dll
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.pdb
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/Player2.genruntimeconfig.cache
+D:/Estudos/Programacao/TAPOO/Batalha_naval/Player2/obj/Debug/net8.0/ref/Player2.dll
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/bin/Debug/net8.0/Player2
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/bin/Debug/net8.0/Player2.deps.json
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/bin/Debug/net8.0/Player2.runtimeconfig.json
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/bin/Debug/net8.0/Player2.dll
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/bin/Debug/net8.0/Player2.pdb
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.GeneratedMSBuildEditorConfig.editorconfig
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.AssemblyInfoInputs.cache
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.AssemblyInfo.cs
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.csproj.CoreCompileInputs.cache
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.sourcelink.json
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.dll
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/refint/Player2.dll
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.pdb
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/Player2.genruntimeconfig.cache
+/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/Debug/net8.0/ref/Player2.dll

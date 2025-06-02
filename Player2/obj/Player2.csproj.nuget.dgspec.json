@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Estudos\\Programacao\\TAPOO\\Batalha_naval\\Player2\\Player2.csproj": {}
+    "/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/Player2.csproj": {}
   },
   "projects": {
-    "D:\\Estudos\\Programacao\\TAPOO\\Batalha_naval\\Player2\\Player2.csproj": {
+    "/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/Player2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Estudos\\Programacao\\TAPOO\\Batalha_naval\\Player2\\Player2.csproj",
+        "projectUniqueName": "/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/Player2.csproj",
         "projectName": "Player2",
-        "projectPath": "D:\\Estudos\\Programacao\\TAPOO\\Batalha_naval\\Player2\\Player2.csproj",
-        "packagesPath": "C:\\Users\\davia\\.nuget\\packages\\",
-        "outputPath": "D:\\Estudos\\Programacao\\TAPOO\\Batalha_naval\\Player2\\obj\\",
+        "projectPath": "/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/Player2.csproj",
+        "packagesPath": "/home/a2023952853/.nuget/packages/",
+        "outputPath": "/home/a2023952853/Área de Trabalho/Batalha_naval/Player2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\davia\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/a2023952853/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/256/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

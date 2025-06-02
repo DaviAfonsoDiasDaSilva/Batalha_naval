@@ -74,6 +74,8 @@ public class Player1Server
             {
                 gameBoard.MarkHit(row, col);
                 shipsSunk++;
+                Console.WriteLine("Navio derrubado!"); // Adicionado para exibir mensagem no terminal
+
                 if (shipsSunk == 10)
                 {
                     Send("WIN");
